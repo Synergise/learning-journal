@@ -12,11 +12,7 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
-env:
-  global:
     
-
 jobs:
   build: 
     environment:
