@@ -12,18 +12,15 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-    
+
 jobs:
   build: 
     environment:
       CC_TEST_REPORTER_ID: cfdd9af6baaca2b415c1893bc196c4527f4c73d1070441b08abde31a72f7188f
     steps:
-      - run:
-          name: Setup Code Climate test-reporter
-          command: |
-          # download test reporter as a static binary
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            chmod +x ./cc-test-reporter
+      - name: Setup Code Climate test-reporter
+        run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            # chmod +x ./cc-test-reporter
 
   test:
 
