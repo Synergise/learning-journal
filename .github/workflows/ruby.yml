@@ -13,9 +13,9 @@ on:
   pull_request:
     branches: [ master ]
 
-env:
-  global:
-    - CC_TEST_REPORTER_ID=cfdd9af6baaca2b415c1893bc196c4527f4c73d1070441b08abde31a72f7188f
+# env:
+#   global:
+#     - CC_TEST_REPORTER_ID=cfdd9af6baaca2b415c1893bc196c4527f4c73d1070441b08abde31a72f7188f
 
 jobs:
   build: 
