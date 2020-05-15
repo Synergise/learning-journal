@@ -19,8 +19,9 @@ jobs:
       CC_TEST_REPORTER_ID: cfdd9af6baaca2b415c1893bc196c4527f4c73d1070441b08abde31a72f7188f
     steps:
       - name: Setup Code Climate test-reporter
-        run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            # chmod +x ./cc-test-reporter
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
 
   test:
 
@@ -33,7 +34,7 @@ jobs:
     # change this to (see https://github.com/ruby/setup-ruby#versioning):
       uses: ruby/setup-ruby@v1
     # uses: ruby/setup-ruby@ec106b438a1ff6ff109590de34ddc62c540232e0
-    - name: Install dependencies
-      run: bundle install
-   - name: Run tests
-     run: bundle exec rspec 
+    # - name: Install dependencies
+    #   run: bundle install
+    #  - name: Run tests
+    #   run: bundle exec rspec 
