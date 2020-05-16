@@ -55,6 +55,8 @@ group :test do
   gem 'faker'
   # For clearing db before each test run
   gem 'database_cleaner'
+  # Add SimpleCov for code coverage
+  gem 'simplecov', require: false, group: :test
 
 end
 
