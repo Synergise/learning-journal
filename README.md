@@ -1,3 +1,6 @@
+<a href="https://codeclimate.com/github/Synergise/learning-journal/maintainability"><img src="https://api.codeclimate.com/v1/badges/56dba4010aa27a6aa01f/maintainability" /></a>
+<img src="https://flat.badgen.net/dependabot/Synergise/learning-journal?icon=dependabot" alt="Dependabot Badge" />
+
 # Learning journal
 
 Contributors:
