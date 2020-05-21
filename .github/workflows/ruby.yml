@@ -26,9 +26,9 @@ jobs:
       # change this to (see https://github.com/ruby/setup-ruby#versioning):
         uses: ruby/setup-ruby@v1
       - name: Install dependencies
-        - run: bundle install
+        run: bundle install
       - name: Prepare database
-        - run: bundle exec rails db:create db:migrate
+        run: bundle exec rails db:create db:migrate
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v2.6.0
         env:
