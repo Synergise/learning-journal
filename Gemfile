@@ -36,14 +36,14 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Factory bot provides methods to create test fixtures for automated testing
   gem 'factory_bot_rails'
+  # Rubocop for linting
+  gem 'rubocop-rails', '~> 2.5'
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'listen', '~> 3.2'
   gem 'web-console', '>= 3.3.0'
-  # Rubocop for linting
-  gem 'rubocop-rails'
 end
 
 group :test do
