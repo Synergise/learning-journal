@@ -56,7 +56,7 @@ group :test do
   # For clearing db before each test run
   gem 'database_cleaner'
   # Add SimpleCov for code coverage
-  gem 'simplecov', '~> 0.17.1'
+  gem 'simplecov', '~> 0.18.5'
 
 end
 
