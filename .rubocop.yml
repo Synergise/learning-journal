@@ -4,6 +4,7 @@ require:
 AllCops:
   NewCops: enable
   Exclude:
+    - app/**/application*
     - bin/bundle
     - db/schema.rb
     - db/migrate/*.rb
