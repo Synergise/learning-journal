@@ -18,7 +18,7 @@ plugins:
     channel: rubocop-0-83
 
   exclude_patterns:
-    - db/
-    - node_modules/
-    - tmp/
-    - vendor/
+    - "db/"
+    - "node_modules/"
+    - "tmp/"
+    - "vendor/"
