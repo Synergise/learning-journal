@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 RSpec.configure do |config|
   config.before(:suite) do
-    DatabaseCleaner.clean_with :truncation
+    Database.Cleaner.clean_with :truncation
   end
 
   config.before(:each) do
@@ -15,4 +17,3 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 end
-  

@@ -1,0 +1,29 @@
+version: "2"
+
+plugins:
+  brakeman:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+        - javascript
+        - ruby
+    exclude_patterns:
+      - spec/
+  reek:
+    enabled: true
+  rubocop:
+    enabled: true
+    channel: rubocop-0-83
+
+exclude_patterns:
+  - "app/**/application*"
+  - "bin/bundle"
+  - "config/"
+  - "db/"
+  - "dist/"
+  - "**/node_modules/"
+  - "script/"
+  - "**/vendor/"
+  - "tmp/"
