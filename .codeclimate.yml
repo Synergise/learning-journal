@@ -20,7 +20,10 @@ plugins:
 exclude_patterns:
   - "app/**/application*"
   - "bin/bundle"
+  - "config/"
   - "db/"
-  - "node_modules/"
+  - "dist/"
+  - "**/node_modules/"
+  - "script/"
+  - "**/vendor/"
   - "tmp/"
-  - "vendor/"
