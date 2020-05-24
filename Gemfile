@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -30,18 +32,17 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Call 'byebug' in code to stop execution and get a debugger console
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Factory bot provides methods to create test fixtures for automated testing
   gem 'factory_bot_rails'
+  # Rubocop for linting
+  gem 'rubocop-rails', '~> 2.5'
 end
 
 group :development do
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.2'
-  # Rubocop for linting
-  gem 'rubocop-rails'
+  gem 'web-console', '>= 3.3.0'
 end
 
 group :test do
@@ -57,8 +58,7 @@ group :test do
   gem 'database_cleaner'
   # Add SimpleCov for code coverage
   gem 'simplecov', '~> 0.17.1'
-
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
