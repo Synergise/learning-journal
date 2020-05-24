@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-describe 'registration' do
+feature 'User registration' do
   context 'user can sign up' do
     let(:user) { build(:user) }
 
-    it 'takes user to home page upon successful registration' do
+    scenario 'with valid credentials will redirect the user to the home page' do
       visit "/"
       click_link "Sign up"
       fill_in "Email", with: user.email
