@@ -30,8 +30,10 @@ require 'support/factory_bot.rb'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
+# rubocop:disable Layout/LineLength, Rails/FilePath
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
-
+# rubocop:enable Layout/LineLength, Rails/FilePath
+#
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
 begin
