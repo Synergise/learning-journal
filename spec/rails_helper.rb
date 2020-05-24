@@ -28,8 +28,10 @@ require 'support/database_cleaner'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
-
+# rubocop:disable Layout/LineLength, Rails/FilePath
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+# rubocop:enable Layout/LineLength, Rails/FilePath
+#
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
 begin
