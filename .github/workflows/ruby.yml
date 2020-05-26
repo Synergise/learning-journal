@@ -25,8 +25,17 @@ jobs:
       # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
       # change this to (see https://github.com/ruby/setup-ruby#versioning):
         uses: ruby/setup-ruby@v1
-      - name: Install dependencies
-        run: bundle install
+      - uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: bundle-use-ruby-ubuntu-latest-${{ hashFiles('.ruby-version') }}-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            bundle-use-ruby-ubuntu-latest-${{ hashFiles('.ruby-version') }}-
+      - name: bundle install
+        run: |
+          bundle config deployment true
+          bundle config path vendor/bundle
+          bundle install --jobs 4
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v2.6.0
         env:
