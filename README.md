@@ -23,18 +23,35 @@ Contributors:
 * [Ruby on Rails](https://rubyonrails.org/)
 * [Node.js](https://nodejs.org/en/) (we recommend [nvm](https://github.com/nvm-sh/nvm))
 * [npm](https://www.npmjs.com/get-npm)
+* _Optional:_ [Docker](https://docs.docker.com/get-docker/)
+* _Optional:_ [docker-compose](https://docs.docker.com/compose/install/)
 
 ## <a name="running_the_program">Running the program</a>
 
 ### Setup
+
+* Clone the repo & `cd` into it
 ```
 $ git clone https://github.com/Synergise/learning-journal.git
 $ cd learning-journal
 ```
+* Continue via [With Docker](#with-docker) or [Without Docker](#without-docker) below
+
+#### With Docker
+* Run `docker-compose up` to spin up docker containers for dev dependencies
+* Run `bundle install` to install Ruby dependencies
+* Run `yarn install` to install Node dependencies
+* Run `rails db:create db:migrate` to create and prepare the database, by default the username is `postgres` and the password is `notinproduction`
+* Run `rails s` to start the development server
+
+#### Without Docker
+* Ensure you have a local `postgres` up and running
+* Run `bundle install` to install Ruby dependencies
+* Run `yarn install` to install Node dependencies
+* Run `rails db:create db:migrate` to create and prepare the database, by default the username is `postgres` and the password is `notinproduction`
+* Run `rails s` to start the development server
 
 ### Testing, code coverage, and code style
 ```
 
 ```
-
-
