@@ -1,0 +1,11 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - app/**/application*
+    - bin/bundle
+    - db/schema.rb
+    - db/migrate/*.rb
+    - node_modules/**/*
