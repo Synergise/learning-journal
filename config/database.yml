@@ -20,10 +20,14 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV.fetch("DB_HOST", "localhost") %>
+  username: <%= ENV.fetch("DB_USERNAME", "postgres") %>
+  port: <%= ENV.fetch("DB_PORT", "5432") %>
 
 development:
   <<: *default
-  database: learning_journal_development
+  database: <%= ENV.fetch("DB_NAME", "learning_journal_development") %>
+  password: <%= ENV.fetch("DB_PASSWORD", "notinproduction") %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -58,6 +62,7 @@ development:
 test:
   <<: *default
   database: learning_journal_test
+  password: <%= ENV.fetch("DB_PASSWORD", "notinproduction") %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +85,5 @@ test:
 #
 production:
   <<: *default
-  database: learning_journal_production
-  username: learning_journal
+  database: <%= ENV.fetch("DB_NAME", "learning_journal_production") %>
   password: <%= ENV['LEARNING_JOURNAL_DATABASE_PASSWORD'] %>
