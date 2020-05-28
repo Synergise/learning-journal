@@ -18,20 +18,33 @@ jobs:
   test:
 
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12.3
+        env:
+          POSTGRES_PASSWORD: notinproduction
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Set up Ruby
-      # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
-      # change this to (see https://github.com/ruby/setup-ruby#versioning):
         uses: ruby/setup-ruby@v1
+
       - name: Install dependencies
         run: bundle install
+
+      - name: Prepare database
+        env:
+          DB_HOST: localhost
+          RAILS_ENV: test
+        run: bundle exec rails db:create db:migrate
+
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v2.6.0
         env:
           CC_TEST_REPORTER_ID: cfdd9af6baaca2b415c1893bc196c4527f4c73d1070441b08abde31a72f7188f
         with:
           coverageCommand: bundle exec rspec
-          debug: true
-          
