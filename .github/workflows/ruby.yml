@@ -32,17 +32,26 @@ jobs:
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
+
       - uses: actions/cache@v1
         with:
           path: vendor/bundle
           key: bundle-use-ruby-ubuntu-latest-${{ hashFiles('.ruby-version') }}-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             bundle-use-ruby-ubuntu-latest-${{ hashFiles('.ruby-version') }}-
+
       - name: bundle install
         run: |
           bundle config deployment true
           bundle config path vendor/bundle
           bundle install --jobs 4
+
+      - name: Prepare database
+        env:
+          DB_HOST: localhost
+          RAILS_ENV: test
+        run: bundle exec rails db:create db:migrate
+
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v2.6.0
         env:
