@@ -8,12 +8,26 @@ Contributors:
 
 [Jason Wong](https://github.com/jasylwong/)
 [Efstathios Stivaros](https://github.com/Stivaros)
+[Maya Chukujama]()
 
 [Objective](#Objective) | [Process](#process) | [Installation](#installation) | [Running the program](#running_the_program)
 
-## Objective
+## Objective(s)
+
+### Stath:
+- Collate all learning resources into one app
+- Implement a product using DigitalOcean
+
+### Jason:
+- Learn how to link a Rails backend with a React frontend via an API
+
+### Maya:
+- TBC
 
 ## Process
+
+[Wireframes](https://jason842465.invisionapp.com/freehand/learning-journal-36SgV4eMJ?v=vjZVtVETrCEbCjPjKYYovg%3D%3D&linkshare=urlcopied)
+[Brainstorming board](https://miro.com/app/board/o9J_ksZAM5U=/)
 
 ## Installation
 

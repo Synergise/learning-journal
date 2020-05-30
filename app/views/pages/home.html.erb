@@ -2,6 +2,7 @@
 
 <% if current_user %>
   <p>Welcome <%= current_user.email %>!</p>
+  <%= link_to 'Glossary' %>
   <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
 <% else %>
   <%= link_to 'Sign up', new_user_registration_path %>
