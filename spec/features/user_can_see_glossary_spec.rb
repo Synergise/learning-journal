@@ -14,7 +14,7 @@ feature 'Glossary view' do
       fill_in 'Password confirmation', with: user.password_confirmation
       click_button 'Sign up'
       click_link 'Glossary'
-      expect(current_path).to eq '/glossary'
+      expect(current_path).to eq '/glossaries'
     end
   end
 end
