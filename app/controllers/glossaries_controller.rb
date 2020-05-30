@@ -1,11 +1,12 @@
 class GlossariesController < ApplicationController
+  def new
+    @glossary = Glossary.new
+  end
+
   def index
   end
 
   def show
-  end
-
-  def new
   end
   
   def create

@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2020_05_30_210801) do
 
   create_table "glossaries", force: :cascade do |t|
     t.string "term"
-    t.text "description"
+    t.text "definition"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
