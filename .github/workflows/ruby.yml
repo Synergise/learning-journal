@@ -16,7 +16,8 @@ on:
 jobs:
 
   test:
-
+    env:
+      RAILS_ENV: test
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -72,7 +73,6 @@ jobs:
       - name: Prepare database
         env:
           DB_HOST: localhost
-          RAILS_ENV: test
         run: bundle exec rails db:create db:migrate
 
       - name: Test & publish code coverage
