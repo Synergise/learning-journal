@@ -4,12 +4,21 @@ class GlossariesController < ApplicationController
   end
 
   def index
+    @glossaries = Glossary.all
   end
 
   def show
+    @glossary = Glossary.find(params[:id])
   end
   
   def create
+    @glossary = Glossary.new(glossary_params)
+
+    if @glossary.save
+      redirect_to '/glossaries'
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -27,5 +36,6 @@ class GlossariesController < ApplicationController
   end
   
   def glossary_params
+    params.require(:glossary).permit(:term, :definition)
   end
 end

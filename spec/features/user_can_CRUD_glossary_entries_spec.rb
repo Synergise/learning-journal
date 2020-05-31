@@ -15,12 +15,14 @@ feature 'Glossary creation' do
       fill_in 'Password confirmation', with: user.password_confirmation
       click_button 'Sign up'
       click_link 'Glossary'
-      click_link 'Add entry'
+      click_link 'Create new entry'
       expect(current_path).to eq '/glossaries/new'
       fill_in 'Term', with: glossary.term
       fill_in 'Definition', with: glossary.definition
-      click_link 'Add to glossary'
-      expect(page).to have_content 'Term added to glossary'
+      click_button 'Add entry'
+      expect(current_path).to eq '/glossaries'
+      expect(page).to have_content glossary.term
+      expect(page).to have_content glossary.definition
     end
   end
 end
