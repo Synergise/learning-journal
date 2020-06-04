@@ -33,6 +33,8 @@ class GlossariesController < ApplicationController
   end
 
   def destroy
+    @glossary.destroy
+    redirect_to glossaries_path
   end
 
   private
