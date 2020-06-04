@@ -3,3 +3,6 @@
 <h1><%= @glossary.term %></h1>
 <p><%= @glossary.definition %></p>
 
+<%= link_to 'Show all terms', glossaries_path %>
+<%= link_to 'Edit', edit_glossary_path(@glossary) %>
+

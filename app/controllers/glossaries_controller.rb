@@ -1,4 +1,5 @@
 class GlossariesController < ApplicationController
+  before_action :find_glossary, only: [:show, :edit, :update, :destroy]
   def new
     @glossary = Glossary.new
   end
@@ -8,7 +9,6 @@ class GlossariesController < ApplicationController
   end
 
   def show
-    @glossary = Glossary.find(params[:id])
   end
   
   def create
@@ -25,12 +25,21 @@ class GlossariesController < ApplicationController
   end
 
   def update
+    if @glossary.update(glossary_params)
+      redirect_to @glossary
+    else
+      render 'edit'
+    end
   end
 
   def destroy
   end
 
   private
+
+  def find_glossary
+    @glossary = Glossary.find(params[:id])
+  end
 
   def find_params
   end

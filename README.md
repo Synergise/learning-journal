@@ -20,6 +20,7 @@ Contributors:
 
 ### Jason:
 - Learn how to link a Rails backend with a React frontend via an API
+- Get experience working with an experienced dev and a UX specialist
 
 ### Maya:
 - TBC
@@ -27,6 +28,7 @@ Contributors:
 ## Process
 
 [Wireframes](https://jason842465.invisionapp.com/freehand/learning-journal-36SgV4eMJ?v=vjZVtVETrCEbCjPjKYYovg%3D%3D&linkshare=urlcopied)
+
 [Brainstorming board](https://miro.com/app/board/o9J_ksZAM5U=/)
 
 ## Installation
