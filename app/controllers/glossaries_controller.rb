@@ -1,5 +1,6 @@
+# controller for glossary and entries
 class GlossariesController < ApplicationController
-  before_action :find_glossary, only: %i(show edit update destroy)
+  before_action :find_glossary, only: %i[show edit update destroy]
   def new
     @glossary = Glossary.new
   end
@@ -14,7 +15,7 @@ class GlossariesController < ApplicationController
     @glossary = Glossary.new(glossary_params)
 
     if @glossary.save
-      redirect_to '/glossaries'
+      redirect_to @glossary
     else
       render 'new'
     end
@@ -40,7 +41,7 @@ class GlossariesController < ApplicationController
   def find_glossary
     @glossary = Glossary.find(params[:id])
   end
-  
+
   def glossary_params
     params.require(:glossary).permit(:term, :definition)
   end

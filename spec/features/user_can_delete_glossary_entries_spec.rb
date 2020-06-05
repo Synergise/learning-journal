@@ -12,7 +12,6 @@ feature 'Glossary deletion' do
     scenario 'will delete a new glossary entry' do
       sign_up(user)
       create_glossary_entry(glossary)
-      click_link glossary.term
       current_term = Glossary.find_by(term: glossary.term)
       expect(current_path).to eq "/glossaries/#{current_term.id}"
       click_link 'Delete'

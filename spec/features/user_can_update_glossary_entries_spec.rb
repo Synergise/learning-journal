@@ -13,7 +13,6 @@ feature 'Glossary edit' do
     scenario 'with valid inputs will update a new glossary entry' do
       sign_up(user)
       create_glossary_entry(glossary)
-      click_link glossary.term
       current_term = Glossary.find_by(term: glossary.term)
       expect(current_path).to eq "/glossaries/#{current_term.id}"
       click_link 'Edit'
