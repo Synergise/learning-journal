@@ -2,11 +2,7 @@
 
 # controller for glossary and entries
 class GlossariesController < ApplicationController
-  def initialize
-    @glossary
-  end
-
-  before_action :find_glossary, only: %i[show edit update destroy]
+  before_action :find_glossary#, only: %i[show edit update destroy]
   def new
     @glossary = Glossary.new
   end
@@ -45,7 +41,7 @@ class GlossariesController < ApplicationController
   private
 
   def find_glossary
-    @glossary = Glossary.find(params[:id])
+    @glossary ||= Glossary.find(params[:id])
   end
 
   def glossary_params
