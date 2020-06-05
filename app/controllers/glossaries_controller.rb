@@ -2,6 +2,10 @@
 
 # controller for glossary and entries
 class GlossariesController < ApplicationController
+  def initialize
+    @glossary
+  end
+
   before_action :find_glossary, only: %i[show edit update destroy]
   def new
     @glossary = Glossary.new
