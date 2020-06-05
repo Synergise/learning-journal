@@ -22,8 +22,8 @@ feature 'Glossary edit' do
       fill_in 'Definition', with: glossary.definition
       click_button 'Add entry'
       click_link glossary.term
-      currentTerm = Glossary.find_by_term(glossary.term)
-      expect(current_path).to eq "/glossaries/#{currentTerm.id}"
+      current_term = Glossary.find_by_term(glossary.term)
+      expect(current_path).to eq "/glossaries/#{current_term.id}"
       click_link 'Edit'
       fill_in 'Term', with: glossary2.term
       fill_in 'Definition', with: glossary2.definition

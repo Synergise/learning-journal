@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require "sign_up_helper"
 
 feature 'Glossary creation' do
   context 'user can create glossary term' do
@@ -8,12 +9,7 @@ feature 'Glossary creation' do
     let(:glossary) { build(:glossary) }
 
     scenario 'with valid inputs will save a new glossary entry' do
-      visit '/'
-      click_link 'Sign up'
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: user.password
-      fill_in 'Password confirmation', with: user.password_confirmation
-      click_button 'Sign up'
+      sign_up(user)
       click_link 'Glossary'
       click_link 'Create new entry'
       expect(current_path).to eq '/glossaries/new'

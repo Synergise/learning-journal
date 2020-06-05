@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require "sign_up_helper"
 
 feature 'Glossary deletion' do
   context 'user can delete glossary term' do
@@ -8,12 +9,7 @@ feature 'Glossary deletion' do
     let(:glossary) { build(:glossary) }
 
     scenario 'will delete a new glossary entry' do
-      visit '/'
-      click_link 'Sign up'
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: user.password
-      fill_in 'Password confirmation', with: user.password_confirmation
-      click_button 'Sign up'
+      sign_up(user)
       click_link 'Glossary'
       click_link 'Create new entry'
       expect(current_path).to eq '/glossaries/new'
@@ -21,12 +17,11 @@ feature 'Glossary deletion' do
       fill_in 'Definition', with: glossary.definition
       click_button 'Add entry'
       click_link glossary.term
-      currentTerm = Glossary.find_by_term(glossary.term)
-      expect(current_path).to eq "/glossaries/#{currentTerm.id}"
+      current_term = Glossary.find_by_term(glossary.term)
+      expect(current_path).to eq "/glossaries/#{current_term.id}"
       click_link 'Delete'
       expect(current_path).to eq glossaries_path
       expect(page).not_to have_content glossary.term
-      expect(page).not_to have_content glossary.definition
     end
   end
 end

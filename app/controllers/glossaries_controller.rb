@@ -10,7 +10,7 @@ class GlossariesController < ApplicationController
 
   def show
   end
-  
+
   def create
     @glossary = Glossary.new(glossary_params)
 
