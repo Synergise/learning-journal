@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def create_glossary_entry(glossary)
   click_link 'Glossary'
   click_link 'Create new entry'
