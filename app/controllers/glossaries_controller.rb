@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # controller for glossary and entries
 class GlossariesController < ApplicationController
   before_action :find_glossary, only: %i[show edit update destroy]
