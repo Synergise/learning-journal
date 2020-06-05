@@ -1,9 +1,5 @@
 version: "2"
 
-checks:
-  instance-variable-assumption:
-    enabled: false
-
 plugins:
   brakeman:
     enabled: true
@@ -17,6 +13,9 @@ plugins:
       - spec/
   reek:
     enabled: true
+    checks:
+      InstanceVariableAssumption:
+        enabled: false
   rubocop:
     enabled: true
     channel: rubocop-0-83
