@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'sign_up_helper'
+require 'create_glossary_entry_helper'
 
 feature 'Glossary edit' do
   context 'user can edit glossary term' do
@@ -9,18 +11,8 @@ feature 'Glossary edit' do
     let(:glossary2) { build(:glossary) }
 
     scenario 'with valid inputs will update a new glossary entry' do
-      visit '/'
-      click_link 'Sign up'
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: user.password
-      fill_in 'Password confirmation', with: user.password_confirmation
-      click_button 'Sign up'
-      click_link 'Glossary'
-      click_link 'Create new entry'
-      expect(current_path).to eq '/glossaries/new'
-      fill_in 'Term', with: glossary.term
-      fill_in 'Definition', with: glossary.definition
-      click_button 'Add entry'
+      sign_up(user)
+      create_glossary_entry(glossary)
       click_link glossary.term
       current_term = Glossary.find_by_term(glossary.term)
       expect(current_path).to eq "/glossaries/#{current_term.id}"
