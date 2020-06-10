@@ -7,3 +7,11 @@ def create_glossary_entry(glossary)
   fill_in 'Definition', with: glossary.definition
   click_button 'Add entry'
 end
+
+def edit_glossary_entry(newGlossary)
+  click_link 'Edit'
+  fill_in 'Term', with: newGlossary.term
+  fill_in 'Definition', with: newGlossary.definition
+  click_button 'Update'
+end
+

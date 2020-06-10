@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'sign_up_helper'
 
 feature 'Glossary view' do
   context 'user can access glossary' do
-    let(:user) { build(:user) }
+    let(:user) { create(:user) }
+    let(:glossary) { create(:glossary) }
 
     scenario 'displays glossary page for user' do
-      sign_up(user)
-      click_link 'Glossary'
-      expect(current_path).to eq '/glossaries'
+      termToCheck = glossary.term
+      sign_in user
+      visit '/glossaries'
+      expect(page).to have_content termToCheck
     end
   end
 end

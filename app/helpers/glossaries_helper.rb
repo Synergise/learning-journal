@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-# module for glossary and entries
+#:nodoc:
 module GlossariesHelper
 end

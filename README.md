@@ -16,7 +16,7 @@ Contributors:
 
 ### Stath:
 - Collate all learning resources into one app
-- Implement a product using DigitalOcean
+- Practice system architecture and infrastructure engineering
 
 ### Jason:
 - Learn how to link a Rails backend with a React frontend via an API
