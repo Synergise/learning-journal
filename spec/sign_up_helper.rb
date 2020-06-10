@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 def sign_up(user)
-  visit '/'
+  visit root_path
   click_link 'Sign up'
   provide_details(user)
   click_button 'Sign up'
