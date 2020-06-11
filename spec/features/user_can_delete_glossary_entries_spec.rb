@@ -11,7 +11,7 @@ feature 'Glossary deletion' do
       sign_in user
       visit "/glossaries/#{glossary.id}"
       click_link 'Delete'
-      expect(page).to have_content "Glossary term successfully deleted."
+      expect(page).to have_content 'Glossary term successfully deleted.'
     end
   end
 end

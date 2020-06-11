@@ -35,7 +35,7 @@ class GlossariesController < ApplicationController
 
   def destroy
     @glossary.destroy
-    flash.alert = "Glossary term successfully deleted."
+    flash.alert = 'Glossary term successfully deleted.'
     redirect_to glossaries_path
   end
 
