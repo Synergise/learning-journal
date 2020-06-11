@@ -12,7 +12,6 @@ plugins:
     exclude_patterns:
       - spec/
   reek:
-    enabled: true
     directories:
       "app/controllers":
         IrresponsibleModule:

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # :nodoc:
 class GlossariesController < ApplicationController
   before_action :find_glossary, only: %i[show edit update destroy]
