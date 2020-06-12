@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-# Provides logic for the views of the glossary
+# :nodoc:
 module GlossariesHelper
 end
