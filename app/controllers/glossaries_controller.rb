@@ -19,7 +19,7 @@ class GlossariesController < ApplicationController
     if @glossary.save
       redirect_to @glossary
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -29,7 +29,7 @@ class GlossariesController < ApplicationController
     if @glossary.update(glossary_params)
       redirect_to @glossary
     else
-      render 'edit'
+      render :edit
     end
   end
 
