@@ -13,7 +13,7 @@ plugins:
       - spec/
   reek:
     enabled: true
-    checks:
+    directories:
       "app/controllers":
         IrresponsibleModule:
           enabled: false
