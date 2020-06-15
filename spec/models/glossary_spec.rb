@@ -63,6 +63,20 @@ RSpec.describe Glossary, type: :mode do
       expect(glossary.definition).not_to eq(glossaryMock2.definition)
     end
 
+    it 'will only alter the definition in the database when updated in the model' do
+      glossary = Glossary.create(
+        term: glossaryMock.term, 
+        definition: glossaryMock.definition
+      )
+      updatedGlossary = glossary.update(
+        definition: glossaryMock2.definition
+      )
+      expect(glossary.term).to eq(glossaryMock.term)
+      expect(glossary.term).not_to eq(glossaryMock2.term)
+      expect(glossary.definition).not_to eq(glossaryMock.definition)
+      expect(glossary.definition).to eq(glossaryMock2.definition)
+    end
+
     it 'updates entries in the database upon valid editing' do
       glossary = Glossary.create(
         term: glossaryMock.term, 
