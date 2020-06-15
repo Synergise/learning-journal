@@ -18,9 +18,7 @@ plugins:
     channel: rubocop-0-83
     checks:
       Rubocop/Metrics/BlockLength:
-        enabled: true
-        exclude_patterns:
-        - 'spec/models/'
+        enabled: false
 
 exclude_patterns:
   - "app/**/application*"
