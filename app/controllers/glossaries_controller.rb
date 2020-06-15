@@ -3,6 +3,7 @@
 # Responsible for the glossary entries
 class GlossariesController < ApplicationController
   before_action :find_glossary, only: %i[show edit update destroy]
+
   def new
     @glossary = Glossary.new
   end
