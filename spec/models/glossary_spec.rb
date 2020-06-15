@@ -72,6 +72,14 @@ RSpec.describe Glossary, type: :mode do
     end
 
     it 'does not change database count upon successful editing' do
+      glossary = Glossary.create(
+        term: glossaryMock.term, 
+        definition: glossaryMock.definition
+      )
+      expect{glossary.update(
+        term: glossaryMock2.term,
+        definition: glossaryMock2.definition
+      )}.not_to change(Glossary, :count)
     end
   end
 
