@@ -2,5 +2,5 @@
 
 # class for glossary and entries
 class Glossary < ApplicationRecord
-  validates :term, presence: true
+  validates :term, :definition, presence: true
 end
