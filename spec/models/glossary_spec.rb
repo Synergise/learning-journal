@@ -53,9 +53,7 @@ RSpec.describe Glossary, type: :mode do
     end
 
     it 'will only alter the term in the database when updated in the model' do
-      updatedGlossary = @glossary.update(
-        term: glossaryMock2.term
-      )
+      @glossary.update(term: glossaryMock2.term)
       expect(@glossary.term).not_to eq(glossaryMock.term)
       expect(@glossary.term).to eq(glossaryMock2.term)
       expect(@glossary.definition).to eq(glossaryMock.definition)
@@ -63,9 +61,7 @@ RSpec.describe Glossary, type: :mode do
     end
 
     it 'will only alter the definition in the database when updated in the model' do
-      updatedGlossary = @glossary.update(
-        definition: glossaryMock2.definition
-      )
+      @glossary.update(definition: glossaryMock2.definition)
       expect(@glossary.term).to eq(glossaryMock.term)
       expect(@glossary.term).not_to eq(glossaryMock2.term)
       expect(@glossary.definition).not_to eq(glossaryMock.definition)
