@@ -20,7 +20,7 @@ class GlossariesController < ApplicationController
     if @glossary.save
       redirect_to @glossary
     else
-      flash.now[:alert] = "Both term and definition must be provided"
+      flash.now[:alert] = 'Both term and definition must be provided'
       render :new
     end
   end
@@ -31,7 +31,7 @@ class GlossariesController < ApplicationController
     if @glossary.update(glossary_params)
       redirect_to @glossary
     else
-      flash.now[:alert] = "Both term and definition must be provided"
+      flash.now[:alert] = 'Both term and definition must be provided'
       render :edit
     end
   end
