@@ -11,7 +11,6 @@ feature 'Glossary edit' do
     scenario 'with valid inputs will update a new glossary entry' do
       sign_in user
       visit "/glossaries/#{glossary.id}"
-      # click_link 'Edit'
       edit_glossary_entry(glossary2)
       expect(page).to have_content glossary2.term
       expect(page).to have_content glossary2.definition
