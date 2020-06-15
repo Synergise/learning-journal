@@ -19,3 +19,8 @@ directories:
   "app/models":
     InstanceVariableAssumption:
       enabled: false
+  "spec/models":
+    method-lines:
+      config:
+        threshold: 25
+
