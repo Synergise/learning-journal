@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Glossary, type: :mode do
-  context "creation" do
-    let(:glossaryMock) { build(:glossary) }
+  let(:glossaryMock) { build(:glossary) }
 
+  context "creation" do
     it 'will mark an empty glossary instance as invalid' do
       glossary = Glossary.new
       glossary.valid?
@@ -41,10 +41,17 @@ RSpec.describe Glossary, type: :mode do
 
   context "modification" do
     it 'removes entries from the database upon deletion' do
-      
+      glossary = Glossary.create(
+        term: glossaryMock.term, 
+        definition: glossaryMock.definition
+      )
+      expect { glossary.delete }.to change(Glossary, :count).by(-1)
     end
 
     it 'updates entries in the database upon valid editing' do
+    end
+
+    it 'does not change database count upon editing' do
     end
   end
 
