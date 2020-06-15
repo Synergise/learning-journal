@@ -92,9 +92,6 @@ RSpec.describe Glossary, type: :mode do
       expect(glossary.definition).to eq(glossaryMock2.definition)
     end
 
-    it 'does not change database count upon failed editing' do
-    end
-
     it 'does not change database count upon successful editing' do
       glossary = Glossary.create(
         term: glossaryMock.term, 
