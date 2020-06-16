@@ -15,5 +15,17 @@ feature 'Glossary creation' do
       expect(page).to have_content glossary.term
       expect(page).to have_content glossary.definition
     end
+
+    scenario 'with blank inputs will send a flash message and will not save' do
+      sign_in user
+      visit root_path
+      click_link 'Glossary'
+      click_link 'Create new entry'
+      fill_in 'Term', with: ''
+      fill_in 'Definition', with: ''
+      click_button 'Add entry'
+      expect(page).not_to have_content glossary.term
+      expect(page).to have_content 'Both term and definition must be provided'
+    end
   end
 end
