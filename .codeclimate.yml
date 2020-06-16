@@ -16,11 +16,6 @@ plugins:
   rubocop:
     enabled: true
     channel: rubocop-0-83
-    checks:
-      Rubocop/Metrics/BlockLength:
-        enabled: true
-        exclude_patterns:
-          - 'spec/**'
 
 exclude_patterns:
   - "app/**/application*"
