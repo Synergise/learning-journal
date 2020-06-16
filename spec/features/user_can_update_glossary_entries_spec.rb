@@ -17,7 +17,7 @@ feature 'Glossary edit' do
       expect(page).not_to have_content glossary.term
     end
 
-    scenario 'with blank inputs will send a flash message and will not update' do
+    scenario 'with blank inputs sends a flash message but does not update' do
       sign_in user
       visit "/glossaries/#{glossary.id}"
       click_link 'Edit'
