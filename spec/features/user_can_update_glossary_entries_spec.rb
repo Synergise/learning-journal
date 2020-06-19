@@ -22,12 +22,12 @@ feature 'Glossary edit' do
       visit "/glossaries/#{glossary.id}"
       click_link 'Edit'
       fill_in_glossary_form('', '')
-      click_button 'Update'
+      click_button 'Update entry'
       expect(page).not_to have_content glossary2.term
       expect(page).not_to have_content glossary2.definition
       expect(page).not_to have_content glossary.term
       expect(page).not_to have_content glossary.definition
-      expect(page).to have_content 'Both term and definition must be provided'
+      expect(page).to have_content "term can't be blank, definition can't be blank"
     end
   end
 end

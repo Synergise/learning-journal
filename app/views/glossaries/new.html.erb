@@ -1,22 +1,7 @@
 <h1>Glossary</h1>
 <h2>Add an entry</h2>
 
-
-<%= form_for @glossary do |f| %>
-  <div>
-    <%= f.label :term %><br />
-    <%= f.text_field :term, autofocus: true, autocomplete: "term" %>
-  </div>
-
-  <div>
-    <%= f.label :definition %><br />
-    <%= f.text_field :definition, autofocus: true, autocomplete: "definition" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Add entry" %>
-  </div>
-<% end %>
+<%= render partial: "form", locals: {glossary: @glossary, submit_text: 'Add entry'} %>
 
 <br />
 <%= link_to 'Cancel', glossaries_path %>

@@ -4,11 +4,14 @@ require 'rails_helper'
 
 feature 'User registration' do
   context 'user can sign up' do
-    let(:user) { create(:user) }
+    let(:user) { build(:user) }
 
     scenario 'with valid credentials will redirect the user to the home page' do
-      sign_in user
-      visit root_path
+      visit new_user_registration_path
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      fill_in 'Password confirmation', with: user.password_confirmation
+      click_button 'Sign up'
       expect(page).to have_content "Welcome #{user.email}!"
     end
   end

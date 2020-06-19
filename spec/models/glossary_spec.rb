@@ -2,9 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.describe Glossary, type: :mode do
-  let(:glossaryMock) { build(:glossary) }
-  let(:glossaryMock2) { build(:glossary) }
+RSpec.describe Glossary, type: :model do
+  let(:glossary_mock) { create(:glossary) }
+  let(:glossary_mock2) { build(:glossary) }
+  let(:updated_glossary) { 
+    create(:glossary,
+    term: glossary_mock.term,
+    definition: glossary_mock.definition) 
+  }
 
   context 'creation' do
     it 'will mark an empty glossary instance as invalid' do
@@ -16,7 +21,7 @@ RSpec.describe Glossary, type: :mode do
     end
 
     it 'will mark entries without a term as invalid' do
-      glossary = Glossary.new(definition: glossaryMock.definition)
+      glossary = Glossary.new(definition: glossary_mock.definition)
       glossary.valid?
       expect(glossary.errors.details[:term]).to include(
         a_hash_including(error: :blank)
@@ -24,17 +29,25 @@ RSpec.describe Glossary, type: :mode do
     end
 
     it 'will mark entries without a definition as invalid' do
-      glossary = Glossary.new(term: glossaryMock.term)
+      glossary = Glossary.new(term: glossary_mock.term)
       glossary.valid?
       expect(glossary.errors.details[:definition]).to include(
         a_hash_including(error: :blank)
       )
     end
 
+    it 'will mark entries with valid credentialss as valid' do
+      glossary = Glossary.new(
+        term: glossary_mock.term,
+        definition: glossary_mock.definition
+      )
+      expect(glossary.valid?).to eq(true)
+    end
+
     it 'adds valid entries to the DB' do
       glossary = Glossary.new(
-        term: glossaryMock.term,
-        definition: glossaryMock.definition
+        term: glossary_mock.term,
+        definition: glossary_mock.definition
       )
       expect { glossary.save }.to change(Glossary, :count).by(1)
     end
@@ -42,48 +55,48 @@ RSpec.describe Glossary, type: :mode do
 
   context 'modification' do
     before(:each) do
-      @glossary = Glossary.create(
-        term: glossaryMock.term,
-        definition: glossaryMock.definition
+      Glossary.create(
+        term: glossary_mock.term,
+        definition: glossary_mock.definition
       )
     end
 
     it 'removes entries from the DB upon deletion' do
-      expect { @glossary.delete }.to change(Glossary, :count).by(-1)
+      expect { glossary_mock.delete }.to change(Glossary, :count).by(-1)
     end
 
     it 'will only alter the term in the DB when updated in the model' do
-      @glossary.update(term: glossaryMock2.term)
-      expect(@glossary.term).not_to eq(glossaryMock.term)
-      expect(@glossary.term).to eq(glossaryMock2.term)
-      expect(@glossary.definition).to eq(glossaryMock.definition)
-      expect(@glossary.definition).not_to eq(glossaryMock2.definition)
+      updated_glossary.update(term: glossary_mock2.term)
+      expect(updated_glossary.term).not_to eq(glossary_mock.term)
+      expect(updated_glossary.term).to eq(glossary_mock2.term)
+      expect(updated_glossary.definition).to eq(glossary_mock.definition)
+      expect(updated_glossary.definition).not_to eq(glossary_mock2.definition)
     end
 
     it 'will only alter definition in the DB when updated in the model' do
-      @glossary.update(definition: glossaryMock2.definition)
-      expect(@glossary.term).to eq(glossaryMock.term)
-      expect(@glossary.term).not_to eq(glossaryMock2.term)
-      expect(@glossary.definition).not_to eq(glossaryMock.definition)
-      expect(@glossary.definition).to eq(glossaryMock2.definition)
+      updated_glossary.update(definition: glossary_mock2.definition)
+      expect(updated_glossary.term).to eq(glossary_mock.term)
+      expect(updated_glossary.term).not_to eq(glossary_mock2.term)
+      expect(updated_glossary.definition).not_to eq(glossary_mock.definition)
+      expect(updated_glossary.definition).to eq(glossary_mock2.definition)
     end
 
     it 'updates entries in the DB upon valid editing' do
-      @glossary.update(
-        term: glossaryMock2.term,
-        definition: glossaryMock2.definition
+      updated_glossary.update(
+        term: glossary_mock2.term,
+        definition: glossary_mock2.definition
       )
-      expect(@glossary.term).not_to eq(glossaryMock.term)
-      expect(@glossary.term).to eq(glossaryMock2.term)
-      expect(@glossary.definition).not_to eq(glossaryMock.definition)
-      expect(@glossary.definition).to eq(glossaryMock2.definition)
+      expect(updated_glossary.term).not_to eq(glossary_mock.term)
+      expect(updated_glossary.term).to eq(glossary_mock2.term)
+      expect(updated_glossary.definition).not_to eq(glossary_mock.definition)
+      expect(updated_glossary.definition).to eq(glossary_mock2.definition)
     end
 
     it 'does not change DB count upon successful editing' do
       expect do
-        @glossary.update(
-          term: glossaryMock2.term,
-          definition: glossaryMock2.definition
+        glossary_mock.update(
+          term: glossary_mock.term,
+          definition: glossary_mock.definition
         )
       end
         .not_to change(Glossary, :count)

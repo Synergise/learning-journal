@@ -20,7 +20,10 @@ class GlossariesController < ApplicationController
     if @glossary.save
       redirect_to @glossary
     else
-      flash.now[:alert] = 'Both term and definition must be provided'
+      errors_to_flash = @glossary.errors.messages.map {|error|
+        "#{error[0]} #{error[1][0]}"
+      }
+      flash.now[:alert] = errors_to_flash.join(', ')
       render :new
     end
   end
@@ -31,7 +34,11 @@ class GlossariesController < ApplicationController
     if @glossary.update(glossary_params)
       redirect_to @glossary
     else
-      flash.now[:alert] = 'Both term and definition must be provided'
+      # flash.now[:alert] = 'Both term and definition must be provided'
+      errors_to_flash = @glossary.errors.messages.map {|error|
+        "#{error[0]} #{error[1][0]}"
+      }
+      flash.now[:alert] = errors_to_flash.join(', ')
       render :edit
     end
   end

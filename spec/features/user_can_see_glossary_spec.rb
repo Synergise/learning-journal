@@ -8,10 +8,10 @@ feature 'Glossary view' do
     let(:glossary) { create(:glossary) }
 
     scenario 'displays glossary page for user' do
-      term_to_check = glossary.term
+      glossary
       sign_in user
-      visit '/glossaries'
-      expect(page).to have_content term_to_check
+      visit glossaries_path
+      expect(page).to have_content glossary.term
     end
   end
 end

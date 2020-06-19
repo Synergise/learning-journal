@@ -10,7 +10,7 @@ end
 def edit_glossary_entry(new_glossary)
   click_link 'Edit'
   fill_in_glossary_form(new_glossary.term, new_glossary.definition)
-  click_button 'Update'
+  click_button 'Update entry'
 end
 
 def fill_in_glossary_form(term, definition)

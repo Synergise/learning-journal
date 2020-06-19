@@ -9,6 +9,7 @@ feature 'Glossary deletion' do
 
     scenario 'will delete a new glossary entry' do
       sign_in user
+      # visit glossaries_path(glossary)
       visit "/glossaries/#{glossary.id}"
       click_link 'Delete'
       expect(page).to have_content 'Glossary term successfully deleted.'
