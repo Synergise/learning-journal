@@ -1,6 +1,11 @@
 <h1>Glossary</h1>
+
+<% render_errors(@glossary).map do |errors| %>
+  <li><%= errors %></li>
+<% end %>
+
 <h2>Edit entry</h2>
 
 <%= render partial: "form", locals: {glossary: @glossary, submit_text: 'Update entry'} %>
-
+<br />
 <%= link_to 'Cancel', glossaries_path %>

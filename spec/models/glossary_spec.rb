@@ -5,11 +5,13 @@ require 'rails_helper'
 RSpec.describe Glossary, type: :model do
   let(:glossary_mock) { create(:glossary) }
   let(:glossary_mock2) { build(:glossary) }
-  let(:updated_glossary) { 
-    create(:glossary,
-    term: glossary_mock.term,
-    definition: glossary_mock.definition) 
-  }
+  let(:updated_glossary) do
+    create(
+      :glossary,
+      term: glossary_mock.term,
+      definition: glossary_mock.definition
+    )
+  end
 
   context 'creation' do
     it 'will mark an empty glossary instance as invalid' do

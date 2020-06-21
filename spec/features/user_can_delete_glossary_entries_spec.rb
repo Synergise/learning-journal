@@ -5,12 +5,11 @@ require 'rails_helper'
 feature 'Glossary deletion' do
   context 'user can delete glossary term' do
     let(:user) { create(:user) }
-    let(:glossary) { create(:glossary) }
+    let!(:glossary) { create(:glossary) }
 
     scenario 'will delete a new glossary entry' do
       sign_in user
-      # visit glossaries_path(glossary)
-      visit "/glossaries/#{glossary.id}"
+      visit glossary_path(glossary)
       click_link 'Delete'
       expect(page).to have_content 'Glossary term successfully deleted.'
     end
