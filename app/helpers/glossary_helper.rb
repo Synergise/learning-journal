@@ -3,6 +3,7 @@
 #:nodoc:
 module GlossaryHelper
   def render_errors(record)
-    record.errors.messages.any? ? record.errors.full_messages : []
+    errors_to_render = record.errors
+    errors_to_render.messages.any? ? errors_to_render.full_messages : []
   end
 end
