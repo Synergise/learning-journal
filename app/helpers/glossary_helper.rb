@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
+#:nodoc:
 module GlossaryHelper
   def render_errors(record)
-    @glossary.errors.messages.any? ? @glossary.errors.full_messages : []
+    record.errors.messages.any? ? record.errors.full_messages : []
   end
 end
