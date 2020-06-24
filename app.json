@@ -1,0 +1,15 @@
+{
+  "name": "Learning Journal",
+  "description": "An app for learners to store their knowledge, track their progress and excel",
+  "keywords": [
+    "productivity",
+    "journal",
+    "learning",
+    "knowledgebase"
+  ],
+  "website": "https://learning-journal.stivaros.com/",
+  "repository": "https://github.com/Synergise/learning-journal",
+  "scripts": {
+    "postdeploy": "bundle exec rails db:migrate"
+  }
+}
