@@ -1,0 +1,9 @@
+<h1>Glossary</h1>
+
+<h2><%= @glossary.term %></h2>
+<p><%= @glossary.definition %></p>
+
+<%= link_to 'Show all terms', glossaries_path %>
+<%= link_to 'Edit', edit_glossary_path(@glossary) %>
+<%= link_to 'Delete', glossary_path(@glossary), method: :delete, data: { confirm: 'Are you certain you want to delete this?' } %>
+

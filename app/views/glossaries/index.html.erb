@@ -1,0 +1,8 @@
+<h1>Glossary</h1>
+
+<% @glossaries.each do |glossary| %>
+  <div><%= link_to glossary.term, glossary %> - <%= glossary.definition %></div>
+<% end %>
+
+<br />
+<%= link_to 'Create new entry', new_glossary_path %>

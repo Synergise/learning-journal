@@ -7,8 +7,7 @@ feature 'User registration' do
     let(:user) { build(:user) }
 
     scenario 'with valid credentials will redirect the user to the home page' do
-      visit '/'
-      click_link 'Sign up'
+      visit new_user_registration_path
       fill_in 'Email', with: user.email
       fill_in 'Password', with: user.password
       fill_in 'Password confirmation', with: user.password_confirmation
