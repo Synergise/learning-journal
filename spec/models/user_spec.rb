@@ -3,63 +3,62 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user_mock) { build(:user) }
-  let!(:user_mock2) { create(:user) }
+  let(:user) { build(:user) }
+  let!(:user_two) { create(:user) }
+  let(:user_three) { build(:user) }
   let(:updated_user) do
-    create(
+    build(
       :user,
-      email: user_mock.email,
-      password: user_mock.password
+      email: user.email,
+      password: user.password
     )
   end
 
   context 'creation' do
     it 'will mark an empty user instance as invalid' do
-      user = User.new
-      user.valid?
-      expect(user.errors.details[:email]).to include(
+      empty_user = User.new
+      empty_user.valid?
+      expect(empty_user.errors.details[:email]).to include(
         a_hash_including(error: :blank)
       )
     end
 
     it 'will mark entries without an email as invalid' do
-      user = User.new(password: user_mock.password)
-      user.valid?
-      expect(user.errors.details[:email]).to include(
+      no_email_user = User.new(password: user.password)
+      no_email_user.valid?
+      expect(no_email_user.errors.details[:email]).to include(
         a_hash_including(error: :blank)
       )
     end
 
     it 'will mark an empty password as invalid' do
-      user = User.new(email: user_mock.email)
-      user.valid?
-      expect(user.errors.details[:password]).to include(
+      no_pw_user = User.new(email: user.email)
+      no_pw_user.valid?
+      expect(no_pw_user.errors.details[:password]).to include(
         a_hash_including(error: :blank)
       )
     end
 
     it 'will mark a user with valid credentials as valid' do
-      user = User.new(
-        email: user_mock.email,
-        password: user_mock.password
+      valid_user = User.new(
+        email: user.email,
+        password: user.password
       )
-      expect(user.valid?).to eq(true)
+      expect(valid_user).to be_valid
     end
 
     it 'adds valid entries to the DB' do
-      user = User.new(
-        email: user_mock.email,
-        password: user_mock.password
+      valid_user = User.new(
+        email: user.email,
+        password: user.password
       )
-      expect { user.save }.to change(User, :count).by(1)
+      expect { valid_user.save }.to change(User, :count).by(1)
     end
 
     it 'should not allow duplicate emails ' do
-      user = User.new(email: user_mock.email, password: user_mock.password)
-      user.save
-      user2 = User.new(email: user_mock.email, password: user_mock.password)
-      user2.valid?
-      expect(user2.errors.details[:email]).to include(
+      user.email = user_two.email
+      user.valid?
+      expect(user.errors.details[:email]).to include(
         a_hash_including(error: :taken)
       )
     end
@@ -67,41 +66,52 @@ RSpec.describe User, type: :model do
 
   context 'modification' do
     it 'removes entries from the DB upon deletion' do
-      expect { user_mock2.delete }.to change(User, :count).by(-1)
+      expect { user_two.delete }.to change(User, :count).by(-1)
     end
 
-    it 'will only alter the email in the DB when updated in the model' do
-      updated_user.update(email: user_mock2.email)
-      expect(updated_user.email).not_to eq(user_mock.email)
-      expect(updated_user.email).to eq(user_mock2.email)
-      expect(updated_user.password).to eq(user_mock.password)
-      expect(updated_user.password).not_to eq(user_mock2.password)
-    end
-
-    it 'will only alter the password in the DB when updated in the model' do
-      updated_user.update(password: user_mock2.password)
-      expect(updated_user.email).to eq(user_mock.email)
-      expect(updated_user.email).not_to eq(user_mock2.email)
-      expect(updated_user.password).not_to eq(user_mock.password)
-      expect(updated_user.password).to eq(user_mock2.password)
-    end
-
-    it 'updates entries in the DB upon valid editing' do
-      updated_user.update(
-        email: user_mock2.email,
-        password: user_mock2.password
+    it 'will not allow altering emails to one already in the db' do
+      user.update(email: user_two.email)
+      user.valid?
+      expect(user.errors.details[:email]).to include(
+        a_hash_including(error: :taken)
       )
-      expect(updated_user.email).not_to eq(user_mock.email)
-      expect(updated_user.email).to eq(user_mock2.email)
-      expect(updated_user.password).not_to eq(user_mock.password)
-      expect(updated_user.password).to eq(user_mock2.password)
+    end
+
+    it 'will only alter email in DB when validly updated in the model' do
+      updated_user.update(email: user_three.email)
+      expect(updated_user).to be_valid
+      expect(updated_user.email).not_to eq(user.email)
+      expect(updated_user.email).to eq(user_three.email)
+      expect(updated_user.password).to eq(user.password)
+      expect(updated_user.password).not_to eq(user_three.password)
+    end
+
+    it 'will only alter password in DB when validly updated in the model' do
+      updated_user.update(password: user_three.password, password_confirmation: user_three.password)
+      expect(updated_user).to be_valid
+      expect(updated_user.email).to eq(user.email)
+      expect(updated_user.email).not_to eq(user_three.email)
+      expect(updated_user.password).to eq(user_three.password)
+      expect(updated_user.password).not_to eq(user.password)
+    end
+
+    it 'updates entries in the DB upon valid editing of both email and pw' do
+      updated_user.update(
+        email: user_three.email,
+        password: user_three.password,
+        password_confirmation: user_three.password
+      )
+      expect(updated_user.email).not_to eq(user.email)
+      expect(updated_user.email).to eq(user_three.email)
+      expect(updated_user.password).not_to eq(user.password)
+      expect(updated_user.password).to eq(user_three.password)
     end
 
     it 'does not change DB count upon successful editing' do
       expect do
-        user_mock2.update(
-          email: user_mock.email,
-          password: user_mock.password
+        updated_user.update(
+          email: user_three.email,
+          password: user_three.password
         )
       end
         .not_to change(User, :count)
