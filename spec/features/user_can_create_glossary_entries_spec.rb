@@ -20,7 +20,7 @@ feature 'Glossary creation' do
       sign_in user
       visit root_path
       create_glossary_entry(blank_glossary)
-      expect(page).not_to have_content glossary.term
+      expect(page).not_to have_content glossary.definition
       expect(page).to have_content "Term can't be blank"
       expect(page).to have_content "Definition can't be blank"
     end
