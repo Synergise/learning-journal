@@ -40,11 +40,19 @@ RSpec.describe User, type: :model do
     end
 
     it 'will mark a user with valid credentials as valid' do
-      valid_user = User.new(
+      expect(user).to be_valid
+    end
+
+    it 'will not allow password confirmation to be different' do
+      invalid_user = User.new(
         email: user.email,
-        password: user.password
+        password: user.password,
+        password_confirmation: user_three.password
       )
-      expect(valid_user).to be_valid
+      invalid_user.valid?
+      expect(invalid_user.errors.details[:password_confirmation]).to include(
+        a_hash_including(error: :confirmation)
+      )
     end
 
     it 'adds valid entries to the DB' do
@@ -86,8 +94,19 @@ RSpec.describe User, type: :model do
       expect(updated_user.password).not_to eq(user_three.password)
     end
 
+    it 'will not allow updating when password confirmation different' do
+      updated_user.update(
+        password: user_three.password,
+        password_confirmation: user_two.password
+      )
+      expect(updated_user).not_to be_valid
+    end
+
     it 'will only alter password in DB when validly updated in the model' do
-      updated_user.update(password: user_three.password, password_confirmation: user_three.password)
+      updated_user.update(
+        password: user_three.password,
+        password_confirmation: user_three.password
+      )
       expect(updated_user).to be_valid
       expect(updated_user.email).to eq(user.email)
       expect(updated_user.email).not_to eq(user_three.email)
@@ -101,6 +120,7 @@ RSpec.describe User, type: :model do
         password: user_three.password,
         password_confirmation: user_three.password
       )
+      expect(updated_user).to be_valid
       expect(updated_user.email).not_to eq(user.email)
       expect(updated_user.email).to eq(user_three.email)
       expect(updated_user.password).not_to eq(user.password)
