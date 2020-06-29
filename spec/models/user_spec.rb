@@ -99,7 +99,10 @@ RSpec.describe User, type: :model do
         password: user_three.password,
         password_confirmation: user_two.password
       )
-      expect(updated_user).not_to be_valid
+      updated_user.valid?
+      expect(updated_user.errors.details[:password_confirmation]).to include(
+        a_hash_including(error: :confirmation)
+      )
     end
 
     it 'will only alter password in DB when validly updated in the model' do
