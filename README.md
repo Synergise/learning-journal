@@ -35,7 +35,7 @@ Contributors:
 
 ### Dependencies & Requirements
 
-* [Ruby 2.6.5](https://www.ruby-lang.org/en/news/2019/10/01/ruby-2-6-5-released/) (we recommend [rbenv](https://github.com/rbenv/rbenv))
+* [Ruby 2.7.1](https://www.ruby-lang.org/en/news/2020/03/31/ruby-2-7-1-released/) (we recommend [rbenv](https://github.com/rbenv/rbenv))
 * [Ruby on Rails](https://rubyonrails.org/)
 * [Node.js](https://nodejs.org/en/) (we recommend [nvm](https://github.com/nvm-sh/nvm))
 * [npm](https://www.npmjs.com/get-npm)
