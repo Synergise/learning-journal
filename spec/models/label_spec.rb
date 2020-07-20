@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Label, type: :model do
-  let(:label_one) { create(:label) }
+  let(:label) { create(:label) }
 
   context 'creation' do
     it 'will mark an empty label instance as invalid' do
@@ -14,9 +14,17 @@ RSpec.describe Label, type: :model do
       )
     end
 
-    it 'will mark a label with valid credentials as valid' do
-      expect(label_one).to be_valid
+    it 'will mark a label with valid name as valid' do
+      expect(label).to be_valid
     end
+    
+    it 'adds valid entries to the DB' do
+      valid_label = Label.new(
+        name: label.name
+      )
+      expect { valid_label.save }.to change(Label, :count).by(1)
+    end
+
 
   end
 end
