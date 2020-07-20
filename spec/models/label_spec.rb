@@ -24,7 +24,17 @@ RSpec.describe Label, type: :model do
       )
       expect { valid_label.save }.to change(Label, :count).by(1)
     end
+  end
 
+  context 'modification' do
+    before(:each) do
+      Label.create(
+        name: label.name
+      )
+    end
 
+    it 'removes entries from the DB upon deletion' do
+      expect { label.delete }.to change(Label, :count).by(-1)
+    end
   end
 end
