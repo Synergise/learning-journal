@@ -4,9 +4,9 @@ require 'rails_helper'
 
 RSpec.describe Label, type: :model do
   let(:label) { create(:label) }
-  let(:label_2) { create(:label) }
+  let!(:label_2) { create(:label) }
   let(:updated_label) do
-    create(
+    build(
       :label,
       name: label.name,
     )
@@ -48,6 +48,14 @@ RSpec.describe Label, type: :model do
       updated_label.update(name: label_2.name)
       expect(updated_label.name).not_to eq(label.name)
       expect(updated_label.name).to eq(label_2.name)
+    end
+
+    it 'does not change DB count upon successful editing' do
+      expect do
+        label_2.update(
+          name: label.name
+        )
+      end.not_to change(Label, :count)
     end
   end
 end
