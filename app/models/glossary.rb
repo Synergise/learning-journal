@@ -9,14 +9,14 @@ class Glossary < ApplicationRecord
   has_many :labels, through: :labellings
 
   def label_list
-    self.labels.map{ |label| label.name }.join(', ')
+    labels.map { |label| label.name }.join(', ')
   end
 
   def label_list=(labels_string)
     label_names = labels_string.split(',')
-      .collect{ |label| label.strip.downcase }.uniq
+                                .map { |label| label.strip.downcase }.uniq
     new_or_found_labels = label_names
-      .collect { |name| Label.find_or_create_by(name: name) }
+                          .map { |name| Label.find_or_create_by(name: name) }
     labels = new_or_found_labels
   end
 end
