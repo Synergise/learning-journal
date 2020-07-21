@@ -5,18 +5,18 @@ class Glossary < ApplicationRecord
   validates :term, :definition, presence: true
   attribute :term, :string
   attribute :definition, :string
-  has_many :labellings
+  has_many :labellings, dependent: :restrict_with_exception
   has_many :labels, through: :labellings
 
   def label_list
-    self.labels.map do |label|
-      label.name
-    end.join(', ')
+    self.labels.map{ |label| label.name }.join(', ')
   end
 
   def label_list=(labels_string)
-    label_names = labels_string.split(",").collect{|l| l.strip.downcase}.uniq
-    new_or_found_labels = label_names.collect { |name| Label.find_or_create_by(name: name) }
-    self.labels = new_or_found_labels
+    label_names = labels_string.split(',')
+      .collect{ |label| label.strip.downcase }.uniq
+    new_or_found_labels = label_names
+      .collect { |name| Label.find_or_create_by(name: name) }
+    labels = new_or_found_labels
   end
 end

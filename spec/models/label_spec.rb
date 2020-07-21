@@ -8,7 +8,7 @@ RSpec.describe Label, type: :model do
   let(:updated_label) do
     build(
       :label,
-      name: label.name,
+      name: label.name
     )
   end
 
@@ -24,7 +24,7 @@ RSpec.describe Label, type: :model do
     it 'will mark a label with valid name as valid' do
       expect(label).to be_valid
     end
-    
+
     it 'adds valid entries to the DB' do
       valid_label = Label.new(
         name: label.name
