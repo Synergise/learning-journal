@@ -5,8 +5,7 @@ class Glossary < ApplicationRecord
   validates :term, :definition, presence: true
   attribute :term, :string
   attribute :definition, :string
-  has_many :labellings, dependent: :destroy
-  has_many :labels, through: :labellings
+  has_and_belongs_to_many :labels
 
   def label_list
     labels.map(&:name).join(', ')

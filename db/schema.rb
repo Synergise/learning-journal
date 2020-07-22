@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 202007201933637) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "glossaries_labels", force: :cascade do |t|
+    t.bigint "glossary_id", null: false
+    t.bigint "label_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["glossary_id"], name: "index_glossaries_labels_on_glossary_id"
+    t.index ["label_id"], name: "index_glossaries_labels_on_label_id"
+  end
+
   create_table "labellings", force: :cascade do |t|
     t.bigint "label_id", null: false
     t.bigint "glossary_id", null: false
@@ -49,6 +58,8 @@ ActiveRecord::Schema.define(version: 202007201933637) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "glossaries_labels", "glossaries"
+  add_foreign_key "glossaries_labels", "labels"
   add_foreign_key "labellings", "glossaries"
   add_foreign_key "labellings", "labels"
 end
