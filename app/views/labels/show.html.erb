@@ -1,0 +1,8 @@
+<h1>Label: <%= @label.name %></h1>
+
+<p>
+  <strong>Glossary entries:</strong>
+  <% @label.glossaries.each do |glossary| %>
+    <li><%= link_to glossary.term, glossary_path(glossary) %></li>
+  <% end %>
+</p>

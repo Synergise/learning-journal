@@ -1,0 +1,8 @@
+<h1>Labels</h1>
+
+<% @labels.each do |label| %>
+  <div><%= link_to label.name, label %></div>
+<% end %>
+
+<br />
+<%= link_to 'Glossary', glossaries_path %>
