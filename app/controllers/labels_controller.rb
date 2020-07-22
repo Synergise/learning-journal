@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Responsible for the labels categories
 class LabelsController < ApplicationController
   def index
     @labels = Label.all
