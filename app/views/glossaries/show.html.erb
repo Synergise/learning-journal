@@ -1,6 +1,7 @@
 <h1>Glossary</h1>
 
 <h2><%= @glossary.term %></h2>
+<p><strong>Labels:</strong> <%= @glossary.labels.map { |label| label.name } %></p>
 <p><%= @glossary.definition %></p>
 
 <%= link_to 'Show all terms', glossaries_path %>
