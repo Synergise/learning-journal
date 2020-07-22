@@ -3,7 +3,11 @@
 def create_glossary_entry_with_label(glossary, label)
   click_link 'Glossary'
   click_link 'Create new entry'
-  fill_in_glossary_form_with_label(glossary.term, glossary.definition, label.name)
+  fill_in_glossary_form_with_label(
+    glossary.term,
+    glossary.definition,
+    label.name
+  )
   click_button 'Add entry'
 end
 
