@@ -11,11 +11,11 @@ def create_glossary_entry_with_label(glossary, label)
   click_button 'Add entry'
 end
 
-# def edit_glossary_entry(new_glossary)
-#   click_link 'Edit'
-#   fill_in_glossary_form(new_glossary.term, new_glossary.definition)
-#   click_button 'Update entry'
-# end
+def edit_label(updated_name)
+  click_link 'Edit'
+  fill_in 'Name', with: updated_name
+  click_button 'Update entry'
+end
 
 def fill_in_glossary_form_with_label(term, definition, label_name)
   fill_in 'Term', with: term
