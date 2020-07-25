@@ -18,7 +18,7 @@ class GlossariesController < ApplicationController
     @glossary = Glossary.new(glossary_params)
 
     if @glossary.save
-      redirect_to @glossary
+      redirect_to glossary_path(@glossary)
     else
       render :new
     end
