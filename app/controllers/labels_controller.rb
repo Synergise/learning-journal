@@ -19,10 +19,10 @@ class LabelsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @label.destroy
-    flash.alert = "Label term successfully deleted."
+    flash.alert = 'Label term successfully deleted.'
     redirect_to labels_path
   end
 
