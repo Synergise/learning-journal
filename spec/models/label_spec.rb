@@ -14,7 +14,7 @@ RSpec.describe Label, type: :model do
 
   context 'creation' do
     it 'will mark an empty label instance as invalid' do
-      empty_label = Label.new
+      empty_label = described_class.new
       empty_label.valid?
       expect(empty_label.errors.details[:name]).to include(
         a_hash_including(error: :blank)
@@ -26,22 +26,22 @@ RSpec.describe Label, type: :model do
     end
 
     it 'adds valid entries to the DB' do
-      valid_label = Label.new(
+      valid_label = described_class.new(
         name: label.name
       )
-      expect { valid_label.save }.to change(Label, :count).by(1)
+      expect { valid_label.save }.to change(described_class, :count).by(1)
     end
   end
 
   context 'modification' do
     before(:each) do
-      Label.create(
+      described_class.create(
         name: label.name
       )
     end
 
     it 'removes entries from the DB upon deletion' do
-      expect { label.delete }.to change(Label, :count).by(-1)
+      expect { label.delete }.to change(described_class, :count).by(-1)
     end
 
     it 'will only alter the name in the DB when updated in the model' do
@@ -55,7 +55,7 @@ RSpec.describe Label, type: :model do
         label_2.update(
           name: label.name
         )
-      end.not_to change(Label, :count)
+      end.not_to change(described_class, :count)
     end
   end
 end
