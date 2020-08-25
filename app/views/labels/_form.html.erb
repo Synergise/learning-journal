@@ -1,10 +1,6 @@
 <%= form_for(label) do |f| %>
-  <div>
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
 
-  <div class="actions">
     <%= f.submit submit_text %>
-  </div>
 <% end %>
