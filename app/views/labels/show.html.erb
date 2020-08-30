@@ -1,0 +1,13 @@
+<h1>Label: <%= @label.name %></h1>
+
+<p>
+  <strong>Glossary entries:</strong>
+  <% @label.glossaries.each do |glossary| %>
+    <li><%= link_to glossary.term, glossary_path(glossary) %></li>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_label_path(@label) %>
+<%= link_to 'Delete', label_path(@label), method: :delete, data: { confirm: 'Are you certain you want to delete this?' } %>
+<br />
+<%= link_to 'Show all terms', glossaries_path %>

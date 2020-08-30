@@ -1,0 +1,10 @@
+<h1>Label</h1>
+
+<h2>Edit entry</h2>
+
+<%= render partial: "error_panel", locals: { errors: @label.errors } if @label.errors.any? %>
+
+<%= render partial: "form", locals: {label: @label, submit_text: 'Update entry'} %>
+
+<br />
+<%= link_to 'Cancel', labels_path %>

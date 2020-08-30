@@ -1,6 +1,12 @@
 <h1>Glossary</h1>
 
 <h2><%= @glossary.term %></h2>
+<p>
+  <strong>Labels:</strong>
+  <% @glossary.labels.each do |label| %>
+    <%= link_to label.name, label_path(label) %>
+  <% end %>
+</p>
 <p><%= @glossary.definition %></p>
 
 <%= link_to 'Show all terms', glossaries_path %>

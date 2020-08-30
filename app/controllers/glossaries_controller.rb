@@ -18,7 +18,7 @@ class GlossariesController < ApplicationController
     @glossary = Glossary.new(glossary_params)
 
     if @glossary.save
-      redirect_to @glossary
+      redirect_to glossary_path(@glossary)
     else
       render :new
     end
@@ -47,6 +47,6 @@ class GlossariesController < ApplicationController
   end
 
   def glossary_params
-    params.require(:glossary).permit(:term, :definition)
+    params.require(:glossary).permit(:term, :definition, :label_list)
   end
 end
