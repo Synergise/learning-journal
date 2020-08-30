@@ -1,12 +1,12 @@
 <%= form_for(glossary) do |f| %>
-    <%= f.label :term %><br />
-    <%= f.text_field :term, autofocus: true, autocomplete: "term" %>
+    <%= f.label :term %>
+    <%= f.text_field :term, autofocus: true, autocomplete: "term" %><br />
 
-    <%= f.label :definition %><br />
-    <%= f.text_field :definition, autofocus: true, autocomplete: "definition" %>
+    <%= f.label :definition %>
+    <%= f.text_field :definition, autofocus: true, autocomplete: "definition" %><br />
 
-    <%= f.label :label_list %><br />
-    <%= f.text_field :label_list %>
+    <%= f.label :label_list %>
+    <%= f.text_field :label_list %><br />
 
     <%= f.submit submit_text %>
 <% end %>
