@@ -38,7 +38,7 @@ group :development, :test do
   # Factory bot provides methods to create test fixtures for automated testing
   gem 'factory_bot_rails'
   # Rubocop for linting
-  gem 'rubocop-rails', '~> 2.5'
+  gem 'rubocop-rails', '~> 2.8'
 end
 
 group :development do
