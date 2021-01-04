@@ -58,7 +58,7 @@ group :test do
   # For clearing db before each test run
   gem 'database_cleaner'
   # Add SimpleCov for code coverage
-  gem 'simplecov', '~> 0.17.1'
+  gem 'simplecov', '~> 0.21.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
